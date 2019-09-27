@@ -1,7 +1,7 @@
 augroup YAML
   au!
   au BufReadPost *.yaml %!yaml2edn
-  au BufReadPost *.yaml set ft=edn
+  au BufReadPost *.yaml set ft=clojure
   au BufWritePre *.yaml %!edn2yaml
   au BufWritePost *.yaml %!yaml2edn
   au BufWritePost *.yaml set nomod
