@@ -1,0 +1,13 @@
+#!/usr/bin/env lumo
+(ns edn2yaml.core
+  (:require
+    [cljs.pprint :refer [pprint]]
+    [cljs.reader :refer [read-string]]))
+
+(def yaml  (js/require  "js-yaml"))
+(js/require  "process")
+
+(.setEncoding js/process.stdin  "utf8")
+(.on js/process.stdin  "data"
+  (fn  [data]
+    (println (.safeDump yaml (clj->js (read-string data))))))

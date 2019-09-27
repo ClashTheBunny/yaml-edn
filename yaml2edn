@@ -1,0 +1,12 @@
+#!/usr/bin/env lumo
+(ns yaml2edn.core
+  (:require
+    [cljs.pprint :refer [pprint]]))
+
+(def yaml  (js/require  "js-yaml"))
+(js/require  "process")
+
+(.setEncoding js/process.stdin  "utf8")
+(.on js/process.stdin  "data"
+  (fn  [data]
+    (pprint (js->clj (.safeLoad yaml data)))))
